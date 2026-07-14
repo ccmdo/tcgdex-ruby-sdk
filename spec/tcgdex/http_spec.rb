@@ -73,6 +73,19 @@ RSpec.describe TCGdex::Http do
 
       expect { http.get(url) }.to raise_error(TCGdex::Error, /malformed JSON/)
     end
+
+    it "escapes a raw space so the escape hatch tolerates unescaped values" do
+      spaced = "https://api.tcgdex.net/v2/en/illustrators/tetsuya koizumi"
+      stub_request(:get, "https://api.tcgdex.net/v2/en/illustrators/tetsuya%20koizumi")
+        .to_return(status: 200, body: '{"name":"tetsuya koizumi"}')
+
+      expect(http.get(spaced)).to eq({ "name" => "tetsuya koizumi" })
+    end
+
+    it "raises Error rather than leaking a URI parse failure" do
+      expect { http.get("https://api.tcgdex.net/v2/en/cards/a^b") }
+        .to raise_error(TCGdex::Error, /URL is invalid/)
+    end
   end
 
   describe "#get_raw" do

@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/cards/nonexistent-999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '176'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:25 GMT
+      Etag:
+      - W/"b0-5XVQUeBE4bII4nwxSi089bxUL3w"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: UTF-8
+      string: '{"type":"https://tcgdex.dev/errors/not-found","title":"The resource
+        you are trying to reach does not exists","status":404,"endpoint":"/en/cards/nonexistent-999","method":"GET"}'
+  recorded_at: Tue, 14 Jul 2026 23:07:25 GMT
+recorded_with: VCR 6.4.0

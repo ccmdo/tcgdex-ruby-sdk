@@ -1,0 +1,84 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/stages/BREAK
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '3872'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:22 GMT
+      Etag:
+      - W/"f20-XfHd4Rz0iQ6o7R5M0Mm9+YIvo9o"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: UTF-8
+      string: '{"name":"break","cards":[{"id":"xy11-8","localId":"8","name":"Yanmega
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy11/8"},{"id":"xy8-12","localId":"12","name":"Chesnaught
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy8/12"},{"id":"xy10-14","localId":"14","name":"Delphox
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy10/14"},{"id":"xy12-16","localId":"16","name":"Ninetales
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy12/16"},{"id":"xy9-18","localId":"18","name":"Golduck
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy9/18"},{"id":"xy10-19","localId":"19","name":"Omastar
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy10/19"},{"id":"xy11-21","localId":"21","name":"Talonflame
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy11/21"},{"id":"xy11-24","localId":"24","name":"Pyroar
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy11/24"},{"id":"xy12-32","localId":"32","name":"Starmie
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy12/32"},{"id":"xy11-35","localId":"35","name":"Clawitzer
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy11/35"},{"id":"xy9-41","localId":"41","name":"Greninja
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy9/41"},{"id":"xy12-46","localId":"46","name":"Nidoking
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy12/46"},{"id":"xy9-47","localId":"47","name":"Luxray
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy9/47"},{"id":"xy8-50","localId":"50","name":"Raichu
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy8/50"},{"id":"xy10-51","localId":"51","name":"Carbink
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy10/51"},{"id":"xy12-60","localId":"60","name":"Machamp
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy12/60"},{"id":"xy10-62","localId":"62","name":"Bronzong
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy10/62"},{"id":"xy11-66","localId":"66","name":"Yveltal
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy11/66"},{"id":"xy9-66","localId":"66","name":"Trevenant
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy9/66"},{"id":"xy8-79","localId":"79","name":"Marowak
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy8/79"},{"id":"xy10-79","localId":"79","name":"Lugia
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy10/79"},{"id":"xy11-82","localId":"82","name":"Xerneas
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy11/82"},{"id":"xy11-87","localId":"87","name":"Hydreigon
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy11/87"},{"id":"xy9-89","localId":"89","name":"Raticate
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy9/89"},{"id":"xy8-92","localId":"92","name":"Zoroark
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy8/92"},{"id":"xy8-104","localId":"104","name":"Florges
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy8/104"},{"id":"xy8-113","localId":"113","name":"Noivern
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xy8/113"},{"id":"swshp-SWSH135","localId":"SWSH135","name":"Zacian","image":"https://assets.tcgdex.net/en/swsh/swshp/SWSH135"},{"id":"xyp-XY134","localId":"XY134","name":"Empoleon
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xyp/XY134"},{"id":"xyp-XY135","localId":"XY135","name":"Beheeyem
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xyp/XY135"},{"id":"xyp-XY136","localId":"XY136","name":"Noctowl
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xyp/XY136"},{"id":"xyp-XY154","localId":"XY154","name":"Ho-Oh
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xyp/XY154"},{"id":"xyp-XY155","localId":"XY155","name":"Wobbuffet
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xyp/XY155"},{"id":"xyp-XY180","localId":"XY180","name":"Arcanine
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xyp/XY180"},{"id":"xyp-XY181","localId":"XY181","name":"Crobat
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xyp/XY181"},{"id":"xyp-XY182","localId":"XY182","name":"Mandibuzz
+        BREAK","image":"https://assets.tcgdex.net/en/xy/xyp/XY182"}]}'
+  recorded_at: Tue, 14 Jul 2026 23:07:23 GMT
+recorded_with: VCR 6.4.0

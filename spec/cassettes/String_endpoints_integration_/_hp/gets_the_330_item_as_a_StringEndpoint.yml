@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/hp/330
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '25'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:23 GMT
+      Etag:
+      - W/"19-64GM7ArkgAR4XW17UkksQdMDefw"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: UTF-8
+      string: '{"name":"330","cards":[]}'
+  recorded_at: Tue, 14 Jul 2026 23:07:23 GMT
+recorded_with: VCR 6.4.0

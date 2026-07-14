@@ -72,7 +72,7 @@ class TCGdex
     # @raise [TCGdex::ServerError] on a 5xx response
     # @raise [TCGdex::NetworkError] when the request could not be completed
     def get_raw(url)
-      response = perform(URI.parse(url))
+      response = perform(parse_uri(url))
 
       case response
       when Net::HTTPSuccess
@@ -84,6 +84,15 @@ class TCGdex
     end
 
     private
+
+    # Escape spaces only, matching the id-escaping rule: it makes the low-level `fetch`
+    # escape hatch tolerant of unescaped values (e.g. "tetsuya koizumi") without
+    # re-encoding already-percent-encoded data. Idempotent for URLs already escaped.
+    def parse_uri(url)
+      URI.parse(url.to_s.gsub(" ", "%20"))
+    rescue URI::InvalidURIError => e
+      raise Error, "TCGdex API request URL is invalid: #{e.message}"
+    end
 
     def perform(uri)
       Net::HTTP.start(uri.host, uri.port,

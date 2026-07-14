@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/cards/swsh3-136
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '2931'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:24 GMT
+      Etag:
+      - W/"b73-jBgqAuYrLLTnmu38CB1kq8DEgRw"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJjYXRlZ29yeSI6IlBva2Vtb24iLCJpZCI6InN3c2gzLTEzNiIsImlsbHVzdHJhdG9yIjoidGV0c3V5YSBrb2l6dW1pIiwiaW1hZ2UiOiJodHRwczovL2Fzc2V0cy50Y2dkZXgubmV0L2VuL3N3c2gvc3dzaDMvMTM2IiwibG9jYWxJZCI6IjEzNiIsIm5hbWUiOiJGdXJyZXQiLCJyYXJpdHkiOiJVbmNvbW1vbiIsInNldCI6eyJjYXJkQ291bnQiOnsib2ZmaWNpYWwiOjE4OSwidG90YWwiOjIwMX0sImlkIjoic3dzaDMiLCJsb2dvIjoiaHR0cHM6Ly9hc3NldHMudGNnZGV4Lm5ldC9lbi9zd3NoL3N3c2gzL2xvZ28iLCJuYW1lIjoiRGFya25lc3MgQWJsYXplIiwic3ltYm9sIjoiaHR0cHM6Ly9hc3NldHMudGNnZGV4Lm5ldC91bml2L3N3c2gvc3dzaDMvc3ltYm9sIn0sInZhcmlhbnRzIjp7ImZpcnN0RWRpdGlvbiI6ZmFsc2UsImhvbG8iOmZhbHNlLCJub3JtYWwiOnRydWUsInJldmVyc2UiOnRydWUsIndQcm9tbyI6ZmFsc2V9LCJ2YXJpYW50c19kZXRhaWxlZCI6W3sidHlwZSI6Im5vcm1hbCIsInNpemUiOiJzdGFuZGFyZCIsInZhcmlhbnRJZCI6ImVuZGZ5bnduNG4xMGd6cSIsInByaWNpbmciOnsiY2FyZG1hcmtldCI6eyJ1cGRhdGVkIjoiMjAyNi0wNy0xNFQxODowNTowOC4wMzNaIiwidW5pdCI6IkVVUiIsImlkUHJvZHVjdCI6NDgzNTU5LCJhdmciOjAuMSwibG93IjowLjAyLCJ0cmVuZCI6MC4xLCJhdmcxIjowLjA1LCJhdmc3IjowLjEsImF2ZzMwIjowLjExLCJhdmctaG9sbyI6MC4zMSwibG93LWhvbG8iOjAuMDQsInRyZW5kLWhvbG8iOjAuMzUsImF2ZzEtaG9sbyI6MC4yOCwiYXZnNy1ob2xvIjowLjM4LCJhdmczMC1ob2xvIjowLjMzfSwidGNncGxheWVyIjp7InVuaXQiOiJVU0QiLCJ1cGRhdGVkIjoiMjAyNi0wNy0xNFQxODowNTowNS44NTFaIiwibm9ybWFsIjp7InByb2R1Y3RJZCI6MjE5MzMzLCJsb3dQcmljZSI6MC4wMSwibWlkUHJpY2UiOjAuMiwiaGlnaFByaWNlIjoyNS4wOSwibWFya2V0UHJpY2UiOjAuMSwiZGlyZWN0TG93UHJpY2UiOjAuMDZ9LCJyZXZlcnNlLWhvbG9mb2lsIjp7InByb2R1Y3RJZCI6MjE5MzMzLCJsb3dQcmljZSI6MC4xNywibWlkUHJpY2UiOjAuMzYsImhpZ2hQcmljZSI6MTkuOTgsIm1hcmtldFByaWNlIjowLjM2LCJkaXJlY3RMb3dQcmljZSI6MC40NH19fX0seyJ0eXBlIjoicmV2ZXJzZSIsInNpemUiOiJzdGFuZGFyZCIsInZhcmlhbnRJZCI6ImNtNGtxdWwzeDFid2x6MWYiLCJwcmljaW5nIjp7ImNhcmRtYXJrZXQiOnsidXBkYXRlZCI6IjIwMjYtMDctMTRUMTg6MDU6MDguMDMzWiIsInVuaXQiOiJFVVIiLCJpZFByb2R1Y3QiOjQ4MzU1OSwiYXZnIjowLjEsImxvdyI6MC4wMiwidHJlbmQiOjAuMSwiYXZnMSI6MC4wNSwiYXZnNyI6MC4xLCJhdmczMCI6MC4xMSwiYXZnLWhvbG8iOjAuMzEsImxvdy1ob2xvIjowLjA0LCJ0cmVuZC1ob2xvIjowLjM1LCJhdmcxLWhvbG8iOjAuMjgsImF2ZzctaG9sbyI6MC4zOCwiYXZnMzAtaG9sbyI6MC4zM30sInRjZ3BsYXllciI6eyJ1bml0IjoiVVNEIiwidXBkYXRlZCI6IjIwMjYtMDctMTRUMTg6MDU6MDUuODUxWiIsIm5vcm1hbCI6eyJwcm9kdWN0SWQiOjIxOTMzMywibG93UHJpY2UiOjAuMDEsIm1pZFByaWNlIjowLjIsImhpZ2hQcmljZSI6MjUuMDksIm1hcmtldFByaWNlIjowLjEsImRpcmVjdExvd1ByaWNlIjowLjA2fSwicmV2ZXJzZS1ob2xvZm9pbCI6eyJwcm9kdWN0SWQiOjIxOTMzMywibG93UHJpY2UiOjAuMTcsIm1pZFByaWNlIjowLjM2LCJoaWdoUHJpY2UiOjE5Ljk4LCJtYXJrZXRQcmljZSI6MC4zNiwiZGlyZWN0TG93UHJpY2UiOjAuNDR9fX19XSwiZGV4SWQiOlsxNjJdLCJocCI6MTEwLCJ0eXBlcyI6WyJDb2xvcmxlc3MiXSwiZXZvbHZlRnJvbSI6IlNlbnRyZXQiLCJkZXNjcmlwdGlvbiI6Ikl0IG1ha2VzIGEgbmVzdCB0byBzdWl0IGl0cyBsb25nIGFuZCBza2lubnkgYm9keS4gVGhlIG5lc3QgaXMgaW1wb3NzaWJsZSBmb3Igb3RoZXIgUG9rw6ltb24gdG8gZW50ZXIuIiwic3RhZ2UiOiJTdGFnZTEiLCJhdHRhY2tzIjpbeyJjb3N0IjpbIkNvbG9ybGVzcyJdLCJuYW1lIjoiRmVlbGluJyBGaW5lIiwiZWZmZWN0IjoiRHJhdyAzIGNhcmRzLiJ9LHsiY29zdCI6WyJDb2xvcmxlc3MiXSwibmFtZSI6IlRhaWwgU21hc2giLCJlZmZlY3QiOiJGbGlwIGEgY29pbi4gSWYgdGFpbHMsIHRoaXMgYXR0YWNrIGRvZXMgbm90aGluZy4iLCJkYW1hZ2UiOjkwfV0sIndlYWtuZXNzZXMiOlt7InR5cGUiOiJGaWdodGluZyIsInZhbHVlIjoiw5cyIn1dLCJyZXRyZWF0IjoxLCJyZWd1bGF0aW9uTWFyayI6IkQiLCJsZWdhbCI6eyJzdGFuZGFyZCI6ZmFsc2UsImV4cGFuZGVkIjp0cnVlfSwidXBkYXRlZCI6IjIwMjYtMDctMDFUMjE6Mjc6NDQrMDE6MDAiLCJwcmljaW5nIjp7ImNhcmRtYXJrZXQiOnsidXBkYXRlZCI6IjIwMjYtMDctMTRUMTg6MDU6MDguMDMzWiIsInVuaXQiOiJFVVIiLCJpZFByb2R1Y3QiOjQ4MzU1OSwiYXZnIjowLjEsImxvdyI6MC4wMiwidHJlbmQiOjAuMSwiYXZnMSI6MC4wNSwiYXZnNyI6MC4xLCJhdmczMCI6MC4xMSwiYXZnLWhvbG8iOjAuMzEsImxvdy1ob2xvIjowLjA0LCJ0cmVuZC1ob2xvIjowLjM1LCJhdmcxLWhvbG8iOjAuMjgsImF2ZzctaG9sbyI6MC4zOCwiYXZnMzAtaG9sbyI6MC4zM30sInRjZ3BsYXllciI6eyJ1bml0IjoiVVNEIiwidXBkYXRlZCI6IjIwMjYtMDctMTRUMTg6MDU6MDUuODUxWiIsIm5vcm1hbCI6eyJwcm9kdWN0SWQiOjIxOTMzMywibG93UHJpY2UiOjAuMDEsIm1pZFByaWNlIjowLjIsImhpZ2hQcmljZSI6MjUuMDksIm1hcmtldFByaWNlIjowLjEsImRpcmVjdExvd1ByaWNlIjowLjA2fSwicmV2ZXJzZS1ob2xvZm9pbCI6eyJwcm9kdWN0SWQiOjIxOTMzMywibG93UHJpY2UiOjAuMTcsIm1pZFByaWNlIjowLjM2LCJoaWdoUHJpY2UiOjE5Ljk4LCJtYXJrZXRQcmljZSI6MC4zNiwiZGlyZWN0TG93UHJpY2UiOjAuNDR9fX19
+  recorded_at: Tue, 14 Jul 2026 23:07:24 GMT
+recorded_with: VCR 6.4.0

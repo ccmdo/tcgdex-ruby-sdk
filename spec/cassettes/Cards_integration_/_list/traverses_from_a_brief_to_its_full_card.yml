@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/cards?pagination:itemsPerPage=2&pagination:page=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '93'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:23 GMT
+      Etag:
+      - W/"5d-MrtQ8YQ/ToingCvmdo7AknOcnV8"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: UTF-8
+      string: '[{"id":"exu-!","localId":"!","name":"Unown"},{"id":"exu-%3F","localId":"%3F","name":"Unown"}]'
+  recorded_at: Tue, 14 Jul 2026 23:07:23 GMT
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/cards/exu-!
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '1253'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:23 GMT
+      Etag:
+      - W/"4e5-NBnqBbZXBgpEZK5tnFN5fBWoye8"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJjYXRlZ29yeSI6IlBva2Vtb24iLCJpZCI6ImV4dS0hIiwiaWxsdXN0cmF0b3IiOiJLeW9rbyBLb2l6dW1pIiwibG9jYWxJZCI6IiEiLCJuYW1lIjoiVW5vd24iLCJyYXJpdHkiOiJSYXJlIiwic2V0Ijp7ImNhcmRDb3VudCI6eyJvZmZpY2lhbCI6MjgsInRvdGFsIjoyOH0sImlkIjoiZXh1IiwibmFtZSI6IlVuc2VlbiBGb3JjZXMgVW5vd24gQ29sbGVjdGlvbiJ9LCJ2YXJpYW50cyI6eyJmaXJzdEVkaXRpb24iOmZhbHNlLCJob2xvIjp0cnVlLCJub3JtYWwiOmZhbHNlLCJyZXZlcnNlIjpmYWxzZSwid1Byb21vIjpmYWxzZX0sInZhcmlhbnRzX2RldGFpbGVkIjpbeyJ0eXBlIjoiaG9sbyIsInNpemUiOiJzdGFuZGFyZCIsInZhcmlhbnRJZCI6ImpyN29ldHgxbXF1ZzkifV0sImRleElkIjpbMjAxXSwiaHAiOjYwLCJ0eXBlcyI6WyJQc3ljaGljIl0sInN0YWdlIjoiQmFzaWMiLCJhYmlsaXRpZXMiOlt7InR5cGUiOiJQb2tlLVBPV0VSIiwibmFtZSI6IlNodWZmbGUiLCJlZmZlY3QiOiJPbmNlIGR1cmluZyB5b3VyIHR1cm4gKGJlZm9yZSB5b3VyIGF0dGFjayksIHlvdSBtYXkgc2VhcmNoIHlvdXIgZGVjayBmb3IgYW5vdGhlciBVbm93biBhbmQgc3dpdGNoIGl0IHdpdGggVW5vd24uIChBbnkgY2FyZHMgYXR0YWNoZWQgdG8gVW5vd24sIGRhbWFnZSBjb3VudGVycywgU3BlY2lhbCBDb25kaXRpb25zLCBhbmQgZWZmZWN0cyBvbiBpdCBhcmUgbm93IG9uIHRoZSBuZXcgUG9rw6ltb24uKSBJZiB5b3UgZG8sIHB1dCBVbm93biBvbiB0b3Agb2YgeW91ciBkZWNrLiBTaHVmZmxlIHlvdXIgZGVjayBhZnRlcndhcmQuIFlvdSBjYW4ndCB1c2UgbW9yZSB0aGFuIDEgU2h1ZmZsZSBQb2vDqS1Qb3dlciBlYWNoIHR1cm4uIn1dLCJhdHRhY2tzIjpbeyJjb3N0IjpbIkNvbG9ybGVzcyJdLCJuYW1lIjoiSGlkZGVuIFBvd2VyIiwiZWZmZWN0IjoiRmxpcCBhIGNvaW4uIElmIGhlYWRzLCBwdXQgMiBkYW1hZ2UgY291bnRlcnMgb24gMSBvZiB5b3VyIG9wcG9uZW50J3MgUG9rw6ltb24uIElmIHRhaWxzLCBwdXQgMiBkYW1hZ2UgY291bnRlcnMgb24gMSBvZiB5b3VyIFBva8OpbW9uLiJ9XSwid2Vha25lc3NlcyI6W3sidHlwZSI6IlBzeWNoaWMiLCJ2YWx1ZSI6IsOXMiJ9XSwicmV0cmVhdCI6MSwibGVnYWwiOnsic3RhbmRhcmQiOmZhbHNlLCJleHBhbmRlZCI6ZmFsc2V9LCJ1cGRhdGVkIjoiMjAyNi0wNS0yM1QxNzozMToxMSswMTowMCIsInByaWNpbmciOnsiY2FyZG1hcmtldCI6bnVsbCwidGNncGxheWVyIjpudWxsfX0=
+  recorded_at: Tue, 14 Jul 2026 23:07:23 GMT
+recorded_with: VCR 6.4.0

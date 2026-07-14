@@ -10,6 +10,8 @@ require "webmock/rspec"
 
 WebMock.disable_net_connect!(allow_localhost: false)
 
+require_relative "support/vcr"
+
 # Static API samples captured from the live API, shared by every spec.
 module Fixtures
   FIXTURES_DIR = File.expand_path("fixtures", __dir__)

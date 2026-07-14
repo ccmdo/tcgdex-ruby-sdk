@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/cards?hp=gte:300&pagination:itemsPerPage=5&pagination:page=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '544'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:05 GMT
+      Etag:
+      - W/"220-Uws7tba05YK1605lDZlnKgC4R3E"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: UTF-8
+      string: '[{"id":"sv07-001","localId":"001","name":"Venusaur ex","image":"https://assets.tcgdex.net/en/sv/sv07/001"},{"id":"swsh3-2","localId":"2","name":"Butterfree
+        VMAX","image":"https://assets.tcgdex.net/en/swsh/swsh3/2"},{"id":"sv03.5-003","localId":"003","name":"Venusaur
+        ex","image":"https://assets.tcgdex.net/en/sv/sv03.5/003"},{"id":"sv10.5b-003","localId":"003","name":"Serperior
+        ex","image":"https://assets.tcgdex.net/en/sv/sv10.5b/003"},{"id":"me04-003","localId":"003","name":"Beedrill
+        ex","image":"https://assets.tcgdex.net/en/me/me04/003"}]'
+  recorded_at: Tue, 14 Jul 2026 23:07:04 GMT
+recorded_with: VCR 6.4.0

@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/cards?pagination:itemsPerPage=5&pagination:page=1&sort:field=hp&sort:order=DESC
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '563'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:05 GMT
+      Etag:
+      - W/"233-ION5bfFmU+8ieSqGSUA8UGuWFjo"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3siaWQiOiJoZ3NzMy03MSIsImxvY2FsSWQiOiI3MSIsIm5hbWUiOiJCdXJuZWQgVG93ZXIiLCJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnRjZ2RleC5uZXQvZW4vaGdzcy9oZ3NzMy83MSJ9LHsiaWQiOiJoZ3NzMi03MSIsImxvY2FsSWQiOiI3MSIsIm5hbWUiOiJDaGVlcmxlYWRlcuKAmXMgQ2hlZXIiLCJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnRjZ2RleC5uZXQvZW4vaGdzcy9oZ3NzMi83MSJ9LHsiaWQiOiJoZ3NzMy03MyIsImxvY2FsSWQiOiI3MyIsIm5hbWUiOiJFbmVyZ3kgRXhjaGFuZ2VyIiwiaW1hZ2UiOiJodHRwczovL2Fzc2V0cy50Y2dkZXgubmV0L2VuL2hnc3MvaGdzczMvNzMifSx7ImlkIjoiaGdzczItNzMiLCJsb2NhbElkIjoiNzMiLCJuYW1lIjoiRW1jZWXigJlzIENoYXR0ZXIiLCJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnRjZ2RleC5uZXQvZW4vaGdzcy9oZ3NzMi83MyJ9LHsiaWQiOiJoZ3NzMy03NCIsImxvY2FsSWQiOiI3NCIsIm5hbWUiOiJGbG93ZXIgU2hvcCBMYWR5IiwiaW1hZ2UiOiJodHRwczovL2Fzc2V0cy50Y2dkZXgubmV0L2VuL2hnc3MvaGdzczMvNzQifV0=
+  recorded_at: Tue, 14 Jul 2026 23:07:04 GMT
+recorded_with: VCR 6.4.0

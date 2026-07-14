@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/rarities
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '571'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:22 GMT
+      Etag:
+      - W/"23b-SYvVGBVe1I5W5XK+WNGQwO68N2M"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: UTF-8
+      string: '["ACE SPEC Rare","Amazing Rare","Black White Rare","Classic Collection","Common","Crown","Double
+        rare","Four Diamond","Full Art Trainer","Holo Rare","Holo Rare V","Holo Rare
+        VMAX","Holo Rare VSTAR","Hyper rare","Illustration rare","LEGEND","Mega Hyper
+        Rare","None","One Diamond","One Shiny","One Star","Promo","Radiant Rare","Rare","Rare
+        Holo","Rare Holo LV.X","Rare PRIME","Secret Rare","Shiny Ultra Rare","Shiny
+        rare","Shiny rare V","Shiny rare VMAX","Special illustration rare","Three
+        Diamond","Three Star","Two Diamond","Two Shiny","Two Star","Ultra Rare","Uncommon"]'
+  recorded_at: Tue, 14 Jul 2026 23:07:22 GMT
+recorded_with: VCR 6.4.0

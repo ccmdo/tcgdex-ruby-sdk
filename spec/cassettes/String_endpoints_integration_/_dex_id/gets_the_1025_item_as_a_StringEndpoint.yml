@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/dex-ids/1025
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '782'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:09 GMT
+      Etag:
+      - W/"30e-j1llBTtfZgtMajvbE8mQTnGv3yU"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: UTF-8
+      string: '{"name":1025,"cards":[{"id":"sv06.5-039","localId":"039","name":"Pecharunt
+        ex","image":"https://assets.tcgdex.net/en/sv/sv06.5/039"},{"id":"sv06.5-085","localId":"085","name":"Pecharunt
+        ex","image":"https://assets.tcgdex.net/en/sv/sv06.5/085"},{"id":"sv06.5-093","localId":"093","name":"Pecharunt
+        ex","image":"https://assets.tcgdex.net/en/sv/sv06.5/093"},{"id":"sv06.5-095","localId":"095","name":"Pecharunt
+        ex","image":"https://assets.tcgdex.net/en/sv/sv06.5/095"},{"id":"svp-129","localId":"129","name":"Pecharunt","image":"https://assets.tcgdex.net/en/sv/svp/129"},{"id":"svp-149","localId":"149","name":"Pecharunt","image":"https://assets.tcgdex.net/en/sv/svp/149"},{"id":"sv08.5-163","localId":"163","name":"Pecharunt
+        ex","image":"https://assets.tcgdex.net/en/sv/sv08.5/163"}]}'
+  recorded_at: Tue, 14 Jul 2026 23:07:07 GMT
+recorded_with: VCR 6.4.0

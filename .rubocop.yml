@@ -36,3 +36,6 @@ RSpec/VerifiedDoubles:
 RSpec/DescribedClass:
   Exclude:
     - "spec/tcgdex_spec.rb"   # TCGdex is the described class AND the namespace (::Card, ::ENDPOINTS)
+RSpec/DescribeClass:
+  Exclude:
+    - "spec/integration/**/*"   # end-to-end specs describe a behaviour, not one class

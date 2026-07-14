@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tcgdex.net/v2/en/random/card
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - tcgdex-ruby-sdk/0.1.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Content-Length,Content-Range
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Length:
+      - '1656'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 14 Jul 2026 23:07:25 GMT
+      Etag:
+      - W/"678-48shnyJbZSTE6/awB4F8TWO14hQ"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Powered-By:
+      - Express
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJjYXRlZ29yeSI6IlBva2Vtb24iLCJpZCI6ImJ3MTAtMjYiLCJpbGx1c3RyYXRvciI6Imthd2F5b28iLCJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnRjZ2RleC5uZXQvZW4vYncvYncxMC8yNiIsImxvY2FsSWQiOiIyNiIsIm5hbWUiOiJBYm9tYXNub3ciLCJyYXJpdHkiOiJVbmNvbW1vbiIsInNldCI6eyJjYXJkQ291bnQiOnsib2ZmaWNpYWwiOjEwMSwidG90YWwiOjEwNX0sImlkIjoiYncxMCIsImxvZ28iOiJodHRwczovL2Fzc2V0cy50Y2dkZXgubmV0L2VuL2J3L2J3MTAvbG9nbyIsIm5hbWUiOiJQbGFzbWEgQmxhc3QiLCJzeW1ib2wiOiJodHRwczovL2Fzc2V0cy50Y2dkZXgubmV0L3VuaXYvYncvYncxMC9zeW1ib2wifSwidmFyaWFudHMiOnsiZmlyc3RFZGl0aW9uIjpmYWxzZSwiaG9sbyI6ZmFsc2UsIm5vcm1hbCI6dHJ1ZSwicmV2ZXJzZSI6ZmFsc2UsIndQcm9tbyI6ZmFsc2V9LCJ2YXJpYW50c19kZXRhaWxlZCI6W3sidHlwZSI6Im5vcm1hbCIsInNpemUiOiJzdGFuZGFyZCIsInZhcmlhbnRJZCI6ImdlbmVyYXRlZCJ9XSwiZGV4SWQiOls0NjBdLCJocCI6MTIwLCJ0eXBlcyI6WyJXYXRlciJdLCJldm9sdmVGcm9tIjoiU25vdmVyIiwiZGVzY3JpcHRpb24iOiJUaGV5IGFwcGVhciB3aGVuIHRoZSBzbm93IGZsb3dlcnMgYmxvb20uIFdoZW4gdGhlIHBldGFscyBmYWxsLCB0aGV5IHJldHJlYXQgdG8gcGxhY2VzIHVua25vd24gYWdhaW4uIiwic3RhZ2UiOiJTdGFnZTEiLCJhdHRhY2tzIjpbeyJjb3N0IjpbIkdyYXNzIiwiR3Jhc3MiXSwibmFtZSI6IlJhem9yIExlYWYiLCJkYW1hZ2UiOjQwfSx7ImNvc3QiOlsiR3Jhc3MiLCJHcmFzcyIsIkNvbG9ybGVzcyJdLCJuYW1lIjoiQmFuZyBIZWFkcyIsImVmZmVjdCI6IkJvdGggdGhpcyBQb2vDqW1vbiBhbmQgdGhlIERlZmVuZGluZyBQb2vDqW1vbiBhcmUgbm93IENvbmZ1c2VkLiIsImRhbWFnZSI6ODB9XSwid2Vha25lc3NlcyI6W3sidHlwZSI6Ik1ldGFsIiwidmFsdWUiOiLDlzIifV0sInJldHJlYXQiOjIsImxlZ2FsIjp7InN0YW5kYXJkIjpmYWxzZSwiZXhwYW5kZWQiOnRydWV9LCJ1cGRhdGVkIjoiMjAyNi0wNS0yN1QyMToyNTo0MCswMTowMCIsInByaWNpbmciOnsiY2FyZG1hcmtldCI6eyJ1cGRhdGVkIjoiMjAyNi0wNy0xNFQxODowNTowOC4wMzNaIiwidW5pdCI6IkVVUiIsImlkUHJvZHVjdCI6MjgxMDQ3LCJhdmciOjAuNDQsImxvdyI6MC4wMiwidHJlbmQiOjAuMzIsImF2ZzEiOjAuMywiYXZnNyI6MC40LCJhdmczMCI6MC4zMiwiYXZnLWhvbG8iOjEsImxvdy1ob2xvIjowLjE3LCJ0cmVuZC1ob2xvIjowLjgsImF2ZzEtaG9sbyI6MSwiYXZnNy1ob2xvIjowLjc5LCJhdmczMC1ob2xvIjowLjc2fSwidGNncGxheWVyIjp7InVuaXQiOiJVU0QiLCJ1cGRhdGVkIjoiMjAyNi0wNy0xNFQxODowNTowNS42MjFaIiwibm9ybWFsIjp7InByb2R1Y3RJZCI6ODM0NDIsImxvd1ByaWNlIjowLjEsIm1pZFByaWNlIjowLjMyLCJoaWdoUHJpY2UiOjE5Ljk4LCJtYXJrZXRQcmljZSI6MC4zLCJkaXJlY3RMb3dQcmljZSI6bnVsbH0sInJldmVyc2UtaG9sb2ZvaWwiOnsicHJvZHVjdElkIjo4MzQ0MiwibG93UHJpY2UiOjAuMjgsIm1pZFByaWNlIjowLjY5LCJoaWdoUHJpY2UiOjE5Ljk4LCJtYXJrZXRQcmljZSI6MC44NCwiZGlyZWN0TG93UHJpY2UiOm51bGx9fX19
+  recorded_at: Tue, 14 Jul 2026 23:07:25 GMT
+recorded_with: VCR 6.4.0
