@@ -1,0 +1,31 @@
+[
+  {
+    "id": "base1",
+    "name": "Base Set",
+    "logo": "https://assets.tcgdex.net/en/base/base1/logo",
+    "cardCount": {
+      "total": 102,
+      "official": 102
+    }
+  },
+  {
+    "id": "base2",
+    "name": "Jungle",
+    "logo": "https://assets.tcgdex.net/en/base/base2/logo",
+    "symbol": "https://assets.tcgdex.net/univ/base/base2/symbol",
+    "cardCount": {
+      "total": 64,
+      "official": 64
+    }
+  },
+  {
+    "id": "basep",
+    "name": "Wizards Black Star Promos",
+    "logo": "https://assets.tcgdex.net/en/base/basep/logo",
+    "symbol": "https://assets.tcgdex.net/univ/base/basep/symbol",
+    "cardCount": {
+      "total": 53,
+      "official": 53
+    }
+  }
+]
