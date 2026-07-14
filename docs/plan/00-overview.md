@@ -117,8 +117,8 @@ where the project stands.
 | # | Milestone | File | Status | Commit |
 |---|---|---|---|---|
 | 1 | Gem scaffold & tooling | `01-gem-scaffold.md` | ☑ done (2026-07-14) | `79dd0d0` |
-| 2 | HTTP client, cache, errors | `02-http-cache-errors.md` | ☑ done (2026-07-14) | |
-| 3 | Query builder | `03-query-builder.md` | ☐ not started | |
+| 2 | HTTP client, cache, errors | `02-http-cache-errors.md` | ☑ done (2026-07-14) | `4c99149` |
+| 3 | Query builder | `03-query-builder.md` | ☑ done (2026-07-14) | |
 | 4 | Models | `04-models.md` | ☐ not started | |
 | 5 | Endpoints & client wiring | `05-endpoints-wiring.md` | ☐ not started | |
 | 6 | Integration tests (VCR) | `06-integration-tests.md` | ☐ not started | |

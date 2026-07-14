@@ -67,14 +67,14 @@ here — the Python SDK effectively ships raw `|` and `%20`.
 
 ## Tasks
 
-- [ ] `lib/tcgdex/query.rb` per the tables above; require from `lib/tcgdex.rb`.
-- [ ] YARD docstrings with one example per method group.
-- [ ] `spec/tcgdex/query_spec.rb`: one spec per row of the method table (assert `to_params`
+- [x] `lib/tcgdex/query.rb` per the tables above; require from `lib/tcgdex.rb`.
+- [x] YARD docstrings with one example per method group.
+- [x] `spec/tcgdex/query_spec.rb`: one spec per row of the method table (assert `to_params`
       pair emitted); chaining returns self; duplicate-key ordering; `to_s` encoding cases
       (pipe, colon, space, `?` in value, unicode e.g. "Pokémon"); `sort` normalizes
       `:desc` → `"DESC"`; `paginate` defaults `items_per_page: 100`; Symbol and String keys
       both work; empty query `to_s` → `""`.
-- [ ] Commit: `feat: add Query builder for filtering, sorting and pagination`.
+- [x] Commit: `feat: add Query builder for filtering, sorting and pagination`.
 
 ## Acceptance criteria
 
@@ -93,4 +93,18 @@ Sending queries over HTTP (milestone 05); validating field names against models.
 
 ## Handoff notes
 
-(fill in only if stopping mid-milestone)
+Milestone complete. Interface is exactly as specified. Points worth knowing:
+
+- Aliases use the `alias` keyword, not `alias_method` (RuboCop's `Style/Alias` default);
+  YARD still renders them as "Also known as", which was the point.
+- `sort` raises `ArgumentError` on an order other than asc/desc — the plan didn't specify
+  a behaviour, and silently emitting a bogus `sort:order` seemed worse.
+- `to_params` returns duplicated pairs, so callers can't mutate the query's internals.
+- Pagination values stay Integers in `to_params` (`["pagination:page", 1]`); everything else
+  is stringified by interpolation.
+- **Still to confirm in milestone 06**: `URI.encode_www_form` renders spaces as `+` and the
+  OR pipe as `%7C`. Believed fine; if a live cassette shows otherwise, switch to
+  `encode_www_form_component` with `+`→`%20` post-processing and update this file and
+  the "Emission API" section above.
+- `.rubocop.yml` gained `Style/WordArray: MinSize: 3` so two-element `["key", "value"]`
+  expectations stay bracketed instead of becoming `%w[key value]`.

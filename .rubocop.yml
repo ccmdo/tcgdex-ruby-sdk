@@ -17,6 +17,8 @@ Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
 Metrics/BlockLength:
   Exclude: ["spec/**/*", "*.gemspec"]
+Style/WordArray:
+  MinSize: 3          # keep two-element ["key", "value"] param pairs bracketed
 Layout/LineLength:
   Max: 110
 RSpec/ExampleLength:
