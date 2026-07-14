@@ -12,15 +12,15 @@ Milestone 01 (scaffold). Read the **Errors** and **Basics** sections of `api-ref
 
 ## Tasks
 
-- [ ] `lib/tcgdex/errors.rb`:
+- [x] `lib/tcgdex/errors.rb`:
       `TCGdex::Error < StandardError`;
       `TCGdex::ServerError < Error` (carries `status` and raw `body` readers);
       `TCGdex::NetworkError < Error` (carries `cause` per Ruby's built-in cause chaining).
-- [ ] `lib/tcgdex/cache.rb` — see sketch.
-- [ ] `lib/tcgdex/http.rb` — see sketch.
-- [ ] Specs: `spec/tcgdex/cache_spec.rb`, `spec/tcgdex/http_spec.rb` (WebMock).
-- [ ] Require the new files from `lib/tcgdex.rb`.
-- [ ] Commit: `feat: add HTTP transport, TTL cache and error hierarchy`.
+- [x] `lib/tcgdex/cache.rb` — see sketch.
+- [x] `lib/tcgdex/http.rb` — see sketch.
+- [x] Specs: `spec/tcgdex/cache_spec.rb`, `spec/tcgdex/http_spec.rb` (WebMock).
+- [x] Require the new files from `lib/tcgdex.rb`.
+- [x] Commit: `feat: add HTTP transport, TTL cache and error hierarchy`.
 
 ## Design contract
 
@@ -105,4 +105,13 @@ timeouts (constants are fine for 0.1); pluggable-cache docs (milestone 05).
 
 ## Handoff notes
 
-(fill in only if stopping mid-milestone)
+Milestone complete, no deviations from the design contract. Notes for later milestones:
+
+- `Http#get` returns the cached value for any non-nil hit, so a legitimately cached `false`
+  still hits the cache (spec'd). Nils are never stored, so 404s always re-request.
+- TTL specs stub `Process.clock_gettime(Process::CLOCK_MONOTONIC)` rather than sleeping —
+  reuse that trick if you need to age the cache.
+- `spec/fixtures/error_404.json` seeded from `docs/plan/fixtures/`. Milestone 04 should copy
+  the fixtures it needs the same way.
+- `Timeout::Error` in `TRANSPORT_ERRORS` is what catches WebMock's `to_timeout`
+  (`Net::OpenTimeout` descends from it) — don't "tidy" it away.

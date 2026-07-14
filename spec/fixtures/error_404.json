@@ -1,0 +1,7 @@
+{
+  "type": "https://tcgdex.dev/errors/not-found",
+  "title": "The resource you are trying to reach does not exists",
+  "status": 404,
+  "endpoint": "/en/cards/nonexistent-999",
+  "method": "GET"
+}
