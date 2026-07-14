@@ -91,18 +91,18 @@ note the memoized Endpoint objects hold only `path`).
 
 ## Tasks
 
-- [ ] `lib/tcgdex/endpoint.rb` + `spec/tcgdex/endpoint_spec.rb` (WebMock: URL construction
+- [x] `lib/tcgdex/endpoint.rb` + `spec/tcgdex/endpoint_spec.rb` (WebMock: URL construction
       incl. language and space-escaping; 404 → nil; query appended; brief mapping;
       raw list passthrough for nil brief_class; client back-ref present on returned models).
-- [ ] `TCGdex` client class in `lib/tcgdex.rb` + `spec/tcgdex_spec.rb` grows:
+- [x] `TCGdex` client class in `lib/tcgdex.rb` + `spec/tcgdex_spec.rb` grows:
       all 16 readers return Endpoints with correct paths (table-driven spec);
       `random.card/set/serie`; `fetch` joins paths and passes Query; config accessors
       delegate correctly; two clients don't share caches unless told to.
-- [ ] Make milestone-04 relationship helpers real: green without RSpec doubles —
+- [x] Make milestone-04 relationship helpers real: green without RSpec doubles —
       WebMock-stub `full_card`, `SetBrief#full_set`, `Set#card`, `CardBrief#image_data`.
-- [ ] Wire `Set#card` per the design decision above; record the choice here.
-- [ ] YARD on all public methods; update README later (milestone 07), not now.
-- [ ] Commit: `feat: wire client, endpoints, random and fetch escape hatch`.
+- [x] Wire `Set#card` per the design decision above; record the choice here.
+- [x] YARD on all public methods; update README later (milestone 07), not now.
+- [x] Commit: `feat: wire client, endpoints, random and fetch escape hatch`.
 
 ## Acceptance criteria
 
@@ -121,4 +121,26 @@ VCR cassettes and the full integration matrix (milestone 06); README/examples (0
 
 ## Handoff notes
 
-(fill in only if stopping mid-milestone)
+Milestone complete. The usage block runs line-for-line under WebMock and the live sanity
+check returns the expected Furret/image-url/types output. Decisions and notes:
+
+- **`Set#card` wiring**: kept the milestone-04 form — `client.fetch("sets", id, local_id.to_s)`
+  wrapped in `Card.new(data, client:)`. Did **not** add `Endpoint#get_nested`; `fetch` already
+  does exactly this and threading a second endpoint method through Set read worse.
+- **`fetch` is the one URL builder**. `Endpoint#get`/`#list` and `Random` all call
+  `client.fetch(...)` rather than composing URLs themselves, so there is a single place that
+  joins `endpoint_url`/`language`/segments and appends the query. `Endpoint#get` passes the
+  space-escaped id as a segment; `escape` replaces spaces only (pre-encoded `%3F` survives).
+- **Endpoints read config at request time**: the 16 readers are memoized but hold only
+  `path` + model classes; language/endpoint_url are read from the client per request, so
+  `client.language = "fr"` retargets existing endpoints (spec'd).
+- **`list` returns `[]` on 404**, not nil — a missing/empty list is more naturally an empty
+  array for callers iterating it. `get` still returns nil on 404.
+- **Raw index passthrough**: endpoints with `brief_class: nil` (`types`, `hp`, …) return the
+  parsed array of Strings/Integers unwrapped.
+- `random` is a small `TCGdex::Random` class (`#card/#set/#serie`), memoized on the client.
+- RuboCop: `spec/tcgdex_spec.rb` is excluded from `RSpec/DescribedClass` — the file uses
+  `TCGdex` as both the described class and the namespace (`TCGdex::Card`, `TCGdex::ENDPOINTS`),
+  so `described_class.new` mixed with `TCGdex::Card` would read inconsistently.
+- The model relationship helpers from milestone 04 are now green over the wire (no doubles);
+  those WebMock specs live in the "relationship helpers over the wire" group in the client spec.

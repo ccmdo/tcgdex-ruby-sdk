@@ -119,8 +119,8 @@ where the project stands.
 | 1 | Gem scaffold & tooling | `01-gem-scaffold.md` | ☑ done (2026-07-14) | `79dd0d0` |
 | 2 | HTTP client, cache, errors | `02-http-cache-errors.md` | ☑ done (2026-07-14) | `4c99149` |
 | 3 | Query builder | `03-query-builder.md` | ☑ done (2026-07-14) | `53f0dd5` |
-| 4 | Models | `04-models.md` | ☑ done (2026-07-14) | |
-| 5 | Endpoints & client wiring | `05-endpoints-wiring.md` | ☐ not started | |
+| 4 | Models | `04-models.md` | ☑ done (2026-07-14) | `1da2cd9` |
+| 5 | Endpoints & client wiring | `05-endpoints-wiring.md` | ☑ done (2026-07-14) | |
 | 6 | Integration tests (VCR) | `06-integration-tests.md` | ☐ not started | |
 | 7 | Docs & polish | `07-docs-polish.md` | ☐ not started | |
 

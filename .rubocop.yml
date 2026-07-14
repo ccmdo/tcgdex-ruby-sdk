@@ -33,3 +33,6 @@ RSpec/SpecFilePathFormat:
 RSpec/VerifiedDoubles:
   Exclude:
     - "spec/tcgdex/models/**/*"   # the client they stub doesn't exist until milestone 05
+RSpec/DescribedClass:
+  Exclude:
+    - "spec/tcgdex_spec.rb"   # TCGdex is the described class AND the namespace (::Card, ::ENDPOINTS)
