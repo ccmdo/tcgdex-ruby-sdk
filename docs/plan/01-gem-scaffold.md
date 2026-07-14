@@ -29,8 +29,9 @@ None (first milestone). Read `00-overview.md` for conventions.
 - [ ] `spec/tcgdex_spec.rb` — trivial spec asserting `TCGdex::VERSION` matches semver.
 - [ ] `.rubocop.yml` — see sketch. Keep it low-friction.
 - [ ] `bin/console` — IRB with the gem loaded (`chmod +x`).
-- [ ] `.gitignore` — `*.gem`, `/coverage/`, `/.yardoc/`, `/doc/` (but NOT `docs/`), `Gemfile.lock`
-      (library convention).
+- [ ] `.gitignore` — already present (GitHub Ruby template; covers `*.gem`, `/coverage/`,
+      `/.yardoc/`, `/doc/` — note `docs/` stays tracked). Just uncomment its `# Gemfile.lock`
+      line (library convention: don't commit the lockfile).
 - [ ] Optional (do last, don't fight it if the runner isn't available):
       `.github/workflows/ci.yml` running `bundle exec rake` on ruby 3.2/3.3/3.4.
       **No release/publish workflow** — explicitly out of scope for this project.
@@ -88,7 +89,7 @@ RSpec/MultipleExpectations:
 ```
 
 Note: rubocop >= 1.72 uses `plugins:`; if an older rubocop resolves, use `require:` instead.
-Add MIT `LICENSE` file (standard text, copyright Steven H).
+MIT `LICENSE` already exists in the repo (GitHub scaffolding) — nothing to add.
 
 ## Acceptance criteria
 
