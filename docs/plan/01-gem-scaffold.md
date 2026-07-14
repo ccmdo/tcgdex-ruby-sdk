@@ -52,7 +52,7 @@ Gem::Specification.new do |spec|
   spec.summary  = "Ruby SDK for the TCGdex Pokémon TCG API"
   spec.description = "Query Pokémon Trading Card Game cards, sets and series from " \
                      "the multilingual TCGdex API (https://tcgdex.dev)."
-  spec.homepage = "https://github.com/<owner>/tcgdex-ruby-sdk" # placeholder ok, no publish planned
+  spec.homepage = "https://github.com/ccmdo/tcgdex-ruby-sdk"
   spec.license  = "MIT"
   spec.required_ruby_version = ">= 3.2"
   spec.files    = Dir["lib/**/*.rb", "LICENSE*", "README.md", "CHANGELOG.md"]

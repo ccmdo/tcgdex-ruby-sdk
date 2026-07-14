@@ -19,7 +19,7 @@ Milestones 01–06 (everything green, cassettes committed).
   2. What is TCGdex (one paragraph, link https://tcgdex.dev; note unofficial-but-faithful
      port of the official JS/Python SDKs)
   3. Installation — Bundler `git:` source (not published to RubyGems):
-     `gem "tcgdex", git: "https://github.com/<owner>/tcgdex-ruby-sdk"` and plain clone + `rake install` alternative
+     `gem "tcgdex", git: "https://github.com/ccmdo/tcgdex-ruby-sdk"` and plain clone + `rake install` alternative
   4. Quick start — the usage block from `00-overview.md` (keep them in sync; it is the contract)
   5. Endpoints table (the 16 + random + fetch)
   6. Querying — method table condensed from `03-query-builder.md`, with 3 realistic examples
