@@ -1,0 +1,16 @@
+[
+  {
+    "id": "base",
+    "name": "Base",
+    "logo": "https://assets.tcgdex.net/en/base/base1/logo"
+  },
+  {
+    "id": "misc",
+    "name": "Miscellaneous"
+  },
+  {
+    "id": "gym",
+    "name": "Gym",
+    "logo": "https://assets.tcgdex.net/en/gym/gym1/logo"
+  }
+]

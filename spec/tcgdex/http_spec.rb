@@ -4,7 +4,7 @@ RSpec.describe TCGdex::Http do
   subject(:http) { described_class.new(cache: nil) }
 
   let(:url) { "https://api.tcgdex.net/v2/en/cards/swsh3-136" }
-  let(:not_found_body) { File.read(File.expand_path("../fixtures/error_404.json", __dir__)) }
+  let(:not_found_body) { fixture("error_404") }
 
   describe "#get" do
     it "returns the parsed body of a 200 response" do
@@ -72,6 +72,44 @@ RSpec.describe TCGdex::Http do
       stub_request(:get, url).to_return(status: 200, body: "<html>nope</html>")
 
       expect { http.get(url) }.to raise_error(TCGdex::Error, /malformed JSON/)
+    end
+  end
+
+  describe "#get_raw" do
+    subject(:http) { described_class.new(cache: TCGdex::Cache.new) }
+
+    let(:url) { "https://assets.tcgdex.net/en/swsh/swsh3/136/high.png" }
+
+    it "returns the body unparsed" do
+      stub_request(:get, url).to_return(status: 200, body: "\x89PNG binary")
+
+      expect(http.get_raw(url)).to eq("\x89PNG binary")
+    end
+
+    it "returns nil for a missing asset" do
+      stub_request(:get, url).to_return(status: 404, body: "")
+
+      expect(http.get_raw(url)).to be_nil
+    end
+
+    it "raises ServerError on a 5xx" do
+      stub_request(:get, url).to_return(status: 500, body: "boom")
+
+      expect { http.get_raw(url) }.to raise_error(TCGdex::ServerError)
+    end
+
+    it "raises NetworkError when the request fails" do
+      stub_request(:get, url).to_timeout
+
+      expect { http.get_raw(url) }.to raise_error(TCGdex::NetworkError)
+    end
+
+    it "does not cache binaries, however large" do
+      stub_request(:get, url).to_return(status: 200, body: "\x89PNG binary")
+
+      2.times { http.get_raw(url) }
+
+      expect(a_request(:get, url)).to have_been_made.twice
     end
   end
 

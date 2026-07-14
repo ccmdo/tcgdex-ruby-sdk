@@ -28,3 +28,8 @@ RSpec/MultipleExpectations:
 RSpec/SpecFilePathFormat:
   CustomTransform:
     TCGdex: tcgdex   # not "tc_gdex"
+  Exclude:
+    - "spec/tcgdex/models/**/*"   # mirrors lib/tcgdex/models/, not the constant path
+RSpec/VerifiedDoubles:
+  Exclude:
+    - "spec/tcgdex/models/**/*"   # the client they stub doesn't exist until milestone 05

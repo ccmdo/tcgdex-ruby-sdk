@@ -1,0 +1,22 @@
+{
+  "name": "tetsuya koizumi",
+  "cards": [
+    {
+      "id": "sm7.5-1",
+      "localId": "1",
+      "name": "Charmander"
+    },
+    {
+      "id": "sm115-1",
+      "localId": "1",
+      "name": "Caterpie",
+      "image": "https://assets.tcgdex.net/en/sm/sm115/1"
+    },
+    {
+      "id": "A4-005",
+      "localId": "005",
+      "name": "Tangrowth",
+      "image": "https://assets.tcgdex.net/en/tcgp/A4/005"
+    }
+  ]
+}

@@ -10,7 +10,24 @@ require "webmock/rspec"
 
 WebMock.disable_net_connect!(allow_localhost: false)
 
+# Static API samples captured from the live API, shared by every spec.
+module Fixtures
+  FIXTURES_DIR = File.expand_path("fixtures", __dir__)
+
+  # @return [String] the raw JSON
+  def fixture(name)
+    File.read(File.join(FIXTURES_DIR, "#{name}.json"))
+  end
+
+  # @return [Hash, Array] the parsed JSON
+  def parsed_fixture(name)
+    JSON.parse(fixture(name))
+  end
+end
+
 RSpec.configure do |config|
+  config.include Fixtures
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

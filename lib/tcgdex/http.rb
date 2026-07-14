@@ -44,6 +44,9 @@ class TCGdex
 
     # GETs a URL and parses the JSON response.
     #
+    # A missing resource (404) yields nil and is not cached — it is a normal outcome
+    # (bad id, or content not translated into the requested language).
+    #
     # @param url [String] the full request URL
     # @return [Hash, Array, String, Numeric, nil] the parsed body, or nil when the
     #   resource does not exist (404) or is otherwise a non-2xx, non-5xx response
@@ -54,7 +57,30 @@ class TCGdex
       cached = cache&.get(url)
       return cached unless cached.nil?
 
-      handle(perform(URI.parse(url)), url)
+      body = get_raw(url)
+      return nil if body.nil?
+
+      parse(body).tap { |value| cache&.set(url, value, cache_ttl) }
+    end
+
+    # GETs a URL and returns the response body unparsed — for binaries (card images).
+    #
+    # Never cached: image bodies are large and the cache is unbounded.
+    #
+    # @param url [String] the full request URL
+    # @return [String, nil] the raw body, or nil when the resource does not exist
+    # @raise [TCGdex::ServerError] on a 5xx response
+    # @raise [TCGdex::NetworkError] when the request could not be completed
+    def get_raw(url)
+      response = perform(URI.parse(url))
+
+      case response
+      when Net::HTTPSuccess
+        response.body
+      when Net::HTTPServerError
+        raise ServerError.new("TCGdex API server error (#{response.code})",
+                              status: response.code.to_i, body: response.body)
+      end
     end
 
     private
@@ -69,18 +95,6 @@ class TCGdex
     rescue *TRANSPORT_ERRORS => e
       # `raise` inside a rescue keeps the original exception as #cause.
       raise NetworkError, "TCGdex API request failed: #{e.class}: #{e.message}"
-    end
-
-    # Missing resources (404) return nil and are not cached: they are a normal
-    # outcome (bad id, or content not translated into the requested language).
-    def handle(response, url)
-      case response
-      when Net::HTTPSuccess
-        parse(response.body).tap { |value| cache&.set(url, value, cache_ttl) }
-      when Net::HTTPServerError
-        raise ServerError.new("TCGdex API server error (#{response.code})",
-                              status: response.code.to_i, body: response.body)
-      end
     end
 
     def parse(body)

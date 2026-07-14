@@ -93,22 +93,22 @@ worth more than flexibility here).
 
 ## Tasks
 
-- [ ] Copy needed fixtures from `docs/plan/fixtures/` into `spec/fixtures/` (keep names).
-- [ ] `Http#get_raw` + spec (see above).
-- [ ] `base.rb` + `spec/tcgdex/models/base_spec.rb` (test the DSL itself with a throwaway
+- [x] Copy needed fixtures from `docs/plan/fixtures/` into `spec/fixtures/` (keep names).
+- [x] `Http#get_raw` + spec (see above).
+- [x] `base.rb` + `spec/tcgdex/models/base_spec.rb` (test the DSL itself with a throwaway
       subclass: camelize mapping, explicit key, nested model, array cast, unknown keys
       ignored, `to_h`, nil client, equality).
-- [ ] `subs.rb`, then the seven model files, requiring order handled in `lib/tcgdex.rb`
+- [x] `subs.rb`, then the seven model files, requiring order handled in `lib/tcgdex.rb`
       (base → subs → briefs → full models).
-- [ ] Specs per model, driven by the fixtures: `card_full.json` exercises nearly every
+- [x] Specs per model, driven by the fixtures: `card_full.json` exercises nearly every
       Card attr (attacks, weaknesses, variants, legal, set brief, dex_id, live-only fields);
       `set_full_trimmed.json`, `serie_full_trimmed.json`, `sets_list_trimmed.json`,
       `series_list_trimmed.json` (note the logo-less `misc` serie), `cards_list_page.json`
       (pre-encoded id `exu-%3F`), `illustrator_item_trimmed.json`.
       Assert `image_url` string composition and the ArgumentError validations.
       Relationship helpers: client double receives expected call; nil client raises.
-- [ ] YARD docstrings (at least class-level + non-obvious methods).
-- [ ] Commit: `feat: add data models with declarative attribute mapping`.
+- [x] YARD docstrings (at least class-level + non-obvious methods).
+- [x] Commit: `feat: add data models with declarative attribute mapping`.
 
 ## Acceptance criteria
 
@@ -132,4 +132,26 @@ Endpoint classes and real client wiring (milestone 05); typed pricing models.
 
 ## Handoff notes
 
-(fill in only if stopping mid-milestone)
+Milestone complete. Interface matches the design contract; the acceptance snippet runs
+verbatim. What milestone 05 needs to honour so the model relationship helpers work:
+
+- The client must expose `#card`, `#set`, `#serie` (each an Endpoint answering `#get(id)`),
+  `#http` (answering `#get_raw(url)`), and `#fetch(*segments)` returning a parsed Hash or nil.
+  `Set#card` calls `client.fetch("sets", id, local_id)`; wire `fetch` to hit
+  `/sets/{id}/{localId}`. These call names are asserted by the model specs' doubles.
+- `attribute` casting is **eager** (done in the constructor), and passes `client:` down into
+  every nested model and array element — that propagation is what lets a `CardBrief` pulled
+  from a `Set#cards` list later `full_card`. Endpoints must pass `client: self`-ish when
+  building models so the chain stays attached.
+- Sub-structs with keys that are already snake_case in the JSON use an explicit `key:`
+  (`Booster#artwork_front/back`, `Card#variants_detailed`) — the camelizer would corrupt them.
+- `pricing` and `variants_detailed` are deliberately raw Hashes (hyphenated keys). Don't model
+  them without a decision to revisit the stretch goal.
+- Equality is class + `to_h`; `hash`/`eql?` defined too, so models work as Hash keys.
+- Validation (`quality`/`extension`) runs before the nil-base check, so a typo raises even on
+  an image-less card. Intentional — catches mistakes rather than silently returning nil.
+
+RuboCop: model specs are excluded from `RSpec/SpecFilePathFormat` and `RSpec/VerifiedDoubles`
+(they live under `spec/tcgdex/models/`, mirroring `lib/`, and stub a client class that does
+not exist until milestone 05). `spec_helper.rb` gained a `Fixtures` module (`fixture` /
+`parsed_fixture`) included into every example.
