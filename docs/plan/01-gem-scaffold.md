@@ -11,31 +11,31 @@ None (first milestone). Read `00-overview.md` for conventions.
 
 ## Tasks
 
-- [ ] `tcgdex.gemspec` — see sketch below. Zero runtime dependencies.
-- [ ] `Gemfile` — `source "https://rubygems.org"; gemspec` plus dev group if preferred
+- [x] `tcgdex.gemspec` — see sketch below. Zero runtime dependencies.
+- [x] `Gemfile` — `source "https://rubygems.org"; gemspec` plus dev group if preferred
       (dev deps can live in the gemspec `add_development_dependency` or the Gemfile —
       pick the Gemfile for a personal project so the gemspec stays minimal).
       Dev deps: `rake`, `rspec` (~> 3.13), `webmock` (~> 3.23), `vcr` (~> 6.2),
       `rubocop` (~> 1.65), `rubocop-rspec`, `rubocop-rake`, `yard`, `simplecov`.
-- [ ] `Rakefile` — `RSpec::Core::RakeTask` + `RuboCop::RakeTask`; `task default: %i[spec rubocop]`.
-- [ ] `lib/tcgdex/version.rb` — `TCGdex::VERSION = "0.1.0"` (define `class TCGdex` here so
+- [x] `Rakefile` — `RSpec::Core::RakeTask` + `RuboCop::RakeTask`; `task default: %i[spec rubocop]`.
+- [x] `lib/tcgdex/version.rb` — `TCGdex::VERSION = "0.1.0"` (define `class TCGdex` here so
       the constant type is consistent everywhere: `class TCGdex; VERSION = "0.1.0"; end`).
-- [ ] `lib/tcgdex.rb` — for now just `require_relative "tcgdex/version"` and the
+- [x] `lib/tcgdex.rb` — for now just `require_relative "tcgdex/version"` and the
       `class TCGdex; end` shell; grows in later milestones.
-- [ ] `.rspec` — `--require spec_helper --format documentation`.
-- [ ] `spec/spec_helper.rb` — standard RSpec config; SimpleCov started at the top (before
+- [x] `.rspec` — `--require spec_helper --format documentation`.
+- [x] `spec/spec_helper.rb` — standard RSpec config; SimpleCov started at the top (before
       requires); WebMock `disable_net_connect!(allow_localhost: false)`; leave VCR config
       for milestone 06.
-- [ ] `spec/tcgdex_spec.rb` — trivial spec asserting `TCGdex::VERSION` matches semver.
-- [ ] `.rubocop.yml` — see sketch. Keep it low-friction.
-- [ ] `bin/console` — IRB with the gem loaded (`chmod +x`).
-- [ ] `.gitignore` — already present (GitHub Ruby template; covers `*.gem`, `/coverage/`,
+- [x] `spec/tcgdex_spec.rb` — trivial spec asserting `TCGdex::VERSION` matches semver.
+- [x] `.rubocop.yml` — see sketch. Keep it low-friction.
+- [x] `bin/console` — IRB with the gem loaded (`chmod +x`).
+- [x] `.gitignore` — already present (GitHub Ruby template; covers `*.gem`, `/coverage/`,
       `/.yardoc/`, `/doc/` — note `docs/` stays tracked). Just uncomment its `# Gemfile.lock`
       line (library convention: don't commit the lockfile).
-- [ ] Optional (do last, don't fight it if the runner isn't available):
+- [x] Optional (do last, don't fight it if the runner isn't available):
       `.github/workflows/ci.yml` running `bundle exec rake` on ruby 3.2/3.3/3.4.
       **No release/publish workflow** — explicitly out of scope for this project.
-- [ ] Commit: `feat: scaffold tcgdex gem skeleton and tooling`.
+- [x] Commit: `feat: scaffold tcgdex gem skeleton and tooling`.
 
 ## Sketches
 
@@ -106,4 +106,14 @@ Any HTTP/model/query code; release automation; CODE_OF_CONDUCT/CONTRIBUTING.
 
 ## Handoff notes
 
-(fill in only if stopping mid-milestone)
+Milestone complete. Two deviations from the sketches, both RuboCop-driven:
+
+1. `lib/tcgdex.rb` has **no `class TCGdex; end` shell** — an empty class body trips
+   `Lint/EmptyClass`. `lib/tcgdex/version.rb` already opens the class, so the file just
+   requires it. Milestone 05 gives the class its real body; add it there, not here.
+2. `.rubocop.yml` gained `RSpec/SpecFilePathFormat: CustomTransform: {TCGdex: tcgdex}` so
+   the acronym maps to `spec/tcgdex_spec.rb` instead of the cop's default `tc_gdex_spec.rb`.
+   Expect to need nothing further for `TCGdex::Card` → `spec/tcgdex/card_spec.rb`.
+
+Environment: ruby 3.3.0preview2, bundler 2.5.3, rubocop 1.88 (so `plugins:` is the correct
+key, not `require:`). `Gemfile.lock` is gitignored per library convention.
