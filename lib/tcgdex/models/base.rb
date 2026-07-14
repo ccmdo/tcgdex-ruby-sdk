@@ -18,7 +18,9 @@ class TCGdex
   #     attribute :variants_detailed, key: "variants_detailed"  # key isn't camelCase
   #   end
   class BaseModel
+    # @return [Array<String>] the image qualities a card image URL accepts
     QUALITIES = %w[high low].freeze
+    # @return [Array<String>] the file extensions any asset URL accepts
     EXTENSIONS = %w[png jpg webp].freeze
 
     class << self
@@ -74,6 +76,8 @@ class TCGdex
     end
     alias eql? ==
 
+    # @return [Integer] a hash over the class and raw data, so equal models
+    #   (see {#==}) can be used as Hash keys or in a Set
     def hash
       [self.class, @data].hash
     end

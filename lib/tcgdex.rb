@@ -31,7 +31,9 @@ require_relative "tcgdex/models/string_endpoint"
 #   tcgdex.type.list                     # => ["Colorless", "Darkness", ...]
 #   tcgdex.random.card                   # => a random TCGdex::Card
 class TCGdex
+  # @return [String] the API base URL used unless overridden
   DEFAULT_ENDPOINT_URL = "https://api.tcgdex.net/v2"
+  # @return [String] the language used unless another is given
   DEFAULT_LANGUAGE = "en"
 
   # Resource endpoints, as `reader => [item_class, brief_class, path]`. A nil brief

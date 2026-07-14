@@ -20,6 +20,7 @@ class TCGdex
   #     .paginate(page: 1, items_per_page: 20)
   #   tcgdex.card.list(query)
   class Query
+    # @return [Array<String>] the sort orders the API accepts
     ORDERS = %w[ASC DESC].freeze
 
     def initialize

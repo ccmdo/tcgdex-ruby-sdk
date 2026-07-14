@@ -15,8 +15,11 @@ class TCGdex
   # The TCGdex API is free and unauthenticated, so responses are cached by
   # default (1 hour) — that is our half of the bargain.
   class Http
+    # @return [Integer] seconds to wait for the connection to open
     OPEN_TIMEOUT = 10
+    # @return [Integer] seconds to wait for the response body
     READ_TIMEOUT = 30
+    # @return [String] the `User-Agent` header sent on every request
     USER_AGENT = "tcgdex-ruby-sdk/#{TCGdex::VERSION}".freeze
 
     # Transport-level failures, all reported as {TCGdex::NetworkError}.

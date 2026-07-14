@@ -122,7 +122,7 @@ where the project stands.
 | 4 | Models | `04-models.md` | ☑ done (2026-07-14) | `1da2cd9` |
 | 5 | Endpoints & client wiring | `05-endpoints-wiring.md` | ☑ done (2026-07-14) | `d983dd1` |
 | 6 | Integration tests (VCR) | `06-integration-tests.md` | ☑ done (2026-07-15) | |
-| 7 | Docs & polish | `07-docs-polish.md` | ☐ not started | |
+| 7 | Docs & polish | `07-docs-polish.md` | ☑ done (2026-07-15) | |
 
 Status values: `☐ not started` → `◐ in progress` → `☑ done (YYYY-MM-DD)`.
 
