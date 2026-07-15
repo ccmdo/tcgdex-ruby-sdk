@@ -132,7 +132,7 @@ Conventions for the Ruby port:
 | `illustrator` | `illustrator` | String? | |
 | `rarity` | `rarity` | String | |
 | `variants` | `variants` | CardVariants | |
-| `variants_detailed` | `variants_detailed` | VariantDetailed[]? | **live-only** (not in py/js SDKs); includes pricing |
+| `variants_detailed` | `variants_detailed` | VariantDetailed[]? | **live-only** (not in py/js SDKs; typed since 0.2.0); includes pricing |
 | `set` | `set` | SetBrief | embedded resume of parent set |
 | `dexId` | `dex_id` | Integer[]? | Pokédex IDs |
 | `hp` | `hp` | Integer? | |
@@ -155,7 +155,7 @@ Conventions for the Ruby port:
 | `legal` | `legal` | Legal | `{standard, expanded}` booleans |
 | `boosters` | `boosters` | Booster[]? | `null` = in every booster; `[]` = in none |
 | `updated` | `updated` | String? | **live-only**, ISO-8601 timestamp |
-| `pricing` | `pricing` | Hash? | **live-only**, see Pricing below |
+| `pricing` | `pricing` | Pricing? | **live-only**, see Pricing below (typed since 0.2.0) |
 
 ### CardBrief (list item) — `fixtures/cards_list_page.json`
 
@@ -228,8 +228,11 @@ series (e.g. `misc`).
 | **CardCountBrief** | `total` int, `official` int |
 | **Booster** | `id` String, `name` String, `logo` String?, `artwork_front` String?, `artwork_back` String? (already snake_case in JSON) |
 | **Abbreviation** | `official` String? (Python SDK also lists per-language keys `fr`, `de`, …) |
-| **VariantDetailed** | `type` String (`normal`/`reverse`/`holo`…), `size` String, `variantId` String, `pricing` Hash? |
-| **Pricing** (stretch goal — raw Hash is acceptable in v0.1) | `cardmarket` `{updated, unit, idProduct, avg, low, trend, avg1, avg7, avg30, avg-holo, …}`, `tcgplayer` `{unit, updated, normal: {productId, lowPrice, midPrice, highPrice, marketPrice, directLowPrice}, "reverse-holofoil": {…}}` — note keys with hyphens |
+| **VariantDetailed** | `type` String (`normal`/`reverse`/`holo`…), `size` String, `variantId` String, `subType` String?, `stamp` String[]?, `foil` String? (last three per the Swift SDK; special printings only), `pricing` Pricing? |
+| **Pricing** (typed since 0.2.0) | `cardmarket` PricingCardmarket?, `tcgplayer` PricingTcgplayer? |
+| **PricingCardmarket** | `updated` String, `unit` String (currency), `idProduct` Integer, `avg`/`low`/`trend`/`avg1`/`avg7`/`avg30` Float?, plus foil twins under hyphenated keys `avg-holo`/`low-holo`/`trend-holo`/`avg1-holo`/`avg7-holo`/`avg30-holo` → `avg_holo` etc. `idProduct` is live-verified but missing from the Kotlin/Swift SDKs |
+| **PricingTcgplayer** | `updated` String, `unit` String (currency), printing slots (each PricingTcgplayerVariant?): `normal`, `holofoil`, `"reverse-holofoil"` → `reverse_holofoil`, `"1st-edition"` → `first_edition`, `"1st-edition-holofoil"` → `first_edition_holofoil`, `unlimited`, `"unlimited-holofoil"` → `unlimited_holofoil`. (Kotlin SDK's `holoFoil` lacks a `@SerializedName` and reads a key the API never sends — the live key is `holofoil`) |
+| **PricingTcgplayerVariant** | `productId` Integer, `lowPrice`/`midPrice`/`highPrice`/`marketPrice`/`directLowPrice` Float? — `productId` is live-verified but missing from the Kotlin/Swift SDKs |
 
 ## Gotchas (hard-won; do not rediscover)
 

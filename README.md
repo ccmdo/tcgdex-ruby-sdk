@@ -44,6 +44,9 @@ card.local_id                              # => "136"
 card.dex_id                                # => [162]
 card.image_url(quality: :high, extension: :png)
 # => "https://assets.tcgdex.net/en/swsh/swsh3/136/high.png"
+card.pricing.cardmarket.trend              # => 0.1 (EUR)
+card.pricing.tcgplayer.holofoil&.market_price
+card.variants_detailed.first.type          # => "normal"
 
 cards = tcgdex.card.list(
   TCGdex::Query.new.contains(:name, "pika").gte(:hp, 60)

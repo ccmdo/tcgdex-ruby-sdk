@@ -85,12 +85,15 @@ RSpec.describe TCGdex::Card do
       expect(card.updated).to eq("2026-07-01T21:27:44+01:00")
     end
 
-    it "leaves pricing as a raw hash, hyphenated keys intact" do
-      expect(card.pricing["cardmarket"]["avg-holo"]).to eq(0.31)
+    it "casts pricing, mapping the hyphenated keys" do
+      expect(card.pricing).to be_a(TCGdex::Pricing)
+      expect(card.pricing.cardmarket).to have_attributes(unit: "EUR", avg_holo: 0.31)
+      expect(card.pricing.tcgplayer.reverse_holofoil.market_price).to eq(0.36)
     end
 
-    it "leaves variants_detailed as raw hashes, reading its snake_case key" do
-      expect(card.variants_detailed.map { |variant| variant["type"] }).to eq(%w[normal reverse])
+    it "casts variants_detailed, reading its snake_case key" do
+      expect(card.variants_detailed.map(&:type)).to eq(%w[normal reverse])
+      expect(card.variants_detailed.first.pricing.tcgplayer.normal.market_price).to eq(0.1)
     end
 
     it "keeps unmodeled data reachable through to_h" do

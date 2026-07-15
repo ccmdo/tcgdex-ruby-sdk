@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tcgdex (0.1.0)
+    tcgdex (0.2.0)
 
 GEM
   remote: https://rubygems.org/

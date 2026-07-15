@@ -2,6 +2,7 @@
 
 require_relative "base"
 require_relative "subs"
+require_relative "pricing"
 require_relative "set_brief"
 
 class TCGdex
@@ -15,9 +16,8 @@ class TCGdex
     attribute :illustrator
     attribute :rarity
     attribute :variants, model: CardVariants
-    # Live-only, and snake_case in the JSON. Left as raw Hashes: the pricing inside
-    # has hyphenated keys ("avg-holo", "reverse-holofoil") not worth modelling yet.
-    attribute :variants_detailed, key: "variants_detailed"
+    # Live-only, and snake_case in the JSON unlike every other multi-word key.
+    attribute :variants_detailed, key: "variants_detailed", model: VariantDetailed, array: true
     attribute :set, model: SetBrief
     attribute :dex_id
     attribute :hp
@@ -41,7 +41,8 @@ class TCGdex
     # nil means "in every booster of the set"; [] means "in none of them".
     attribute :boosters, model: Booster, array: true
     attribute :updated
-    attribute :pricing
+    # Live-only, like variants_detailed and updated.
+    attribute :pricing, model: Pricing
 
     # The API returns image bases without an extension; pick the rendering here.
     #

@@ -4,6 +4,27 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-07-15
+
+### Changed
+
+- **Breaking**: `Card#pricing` and `Card#variants_detailed` are now typed models
+  instead of raw Hashes. Hyphenated and digit-led JSON keys map to snake_case
+  readers: `pricing.cardmarket.avg_holo` (`"avg-holo"`),
+  `pricing.tcgplayer.first_edition_holofoil` (`"1st-edition-holofoil"`), and so on.
+  The raw payload remains available through `#to_h`.
+
+### Added
+
+- Pricing models `TCGdex::Pricing`, `PricingCardmarket`, `PricingTcgplayer` and
+  `PricingTcgplayerVariant`, covering Cardmarket (`avg`/`low`/`trend` and their
+  1/7/30-day and `*_holo` variants, `id_product`) and TCGplayer (per-printing
+  `low_price`/`mid_price`/`high_price`/`market_price`/`direct_low_price`,
+  `product_id`) — including the `idProduct`/`productId` fields the official
+  Kotlin and Swift SDKs do not model.
+- `TCGdex::VariantDetailed` for `Card#variants_detailed`: `type`, `size`,
+  `variant_id`, `sub_type`, `stamp`, `foil`, and its own nested `pricing`.
+
 ## [0.1.0] - 2026-07-15
 
 Initial release: a zero-runtime-dependency Ruby SDK for the

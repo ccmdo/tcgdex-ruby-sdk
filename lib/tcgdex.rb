@@ -10,6 +10,7 @@ require_relative "tcgdex/endpoint"
 # Models: base and sub-structs first, then the resumes the full models embed.
 require_relative "tcgdex/models/base"
 require_relative "tcgdex/models/subs"
+require_relative "tcgdex/models/pricing"
 require_relative "tcgdex/models/card_brief"
 require_relative "tcgdex/models/set_brief"
 require_relative "tcgdex/models/serie_brief"

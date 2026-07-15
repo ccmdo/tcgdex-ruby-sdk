@@ -18,6 +18,8 @@ card.local_id                              # => "136"
 card.dex_id                                # => [162]
 card.image_url(quality: :high, extension: :png)
 # => "https://assets.tcgdex.net/en/swsh/swsh3/136/high.png"
+card.pricing.cardmarket.trend              # => 0.1 (EUR; live-only field, nil offline)
+card.variants_detailed.first.type          # => "normal"
 
 cards = tcgdex.card.list(
   TCGdex::Query.new.contains(:name, "pika").gte(:hp, 60)
@@ -70,6 +72,8 @@ lib/tcgdex/models/card.rb        card_brief.rb  set.rb  set_brief.rb
 lib/tcgdex/models/serie.rb       serie_brief.rb  string_endpoint.rb
 lib/tcgdex/models/subs.rb      # CardVariants, CardAttack, CardAbility, CardItem,
                                # WeakRes, Legal, CardCount, CardCountBrief, Booster, Abbreviation
+lib/tcgdex/models/pricing.rb   # Pricing, PricingCardmarket, PricingTcgplayer,
+                               # PricingTcgplayerVariant, VariantDetailed
 spec/spec_helper.rb
 spec/fixtures/                 # static JSON for unit specs (seeded from docs/plan/fixtures/)
 spec/cassettes/                # VCR cassettes (integration specs)
@@ -123,6 +127,7 @@ where the project stands.
 | 5 | Endpoints & client wiring | `05-endpoints-wiring.md` | ☑ done (2026-07-14) | `d983dd1` |
 | 6 | Integration tests (VCR) | `06-integration-tests.md` | ☑ done (2026-07-15) | `0137264` |
 | 7 | Docs & polish | `07-docs-polish.md` | ☑ done (2026-07-15) | `9938684` |
+| 8 | Typed pricing & variants | `08-typed-pricing.md` | ☑ done (2026-07-15) | |
 
 Status values: `☐ not started` → `◐ in progress` → `☑ done (YYYY-MM-DD)`.
 

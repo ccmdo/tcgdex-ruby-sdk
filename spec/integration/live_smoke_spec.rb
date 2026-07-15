@@ -13,7 +13,10 @@ RSpec.describe "live API smoke", if: ENV["LIVE"] == "1" do
   end
 
   it "fetches Furret for real" do
-    expect(TCGdex.new.card.get("swsh3-136").name).to eq("Furret")
+    card = TCGdex.new.card.get("swsh3-136")
+
+    expect(card.name).to eq("Furret")
+    expect(card.pricing.cardmarket.avg).to be_a(Numeric) unless card.pricing&.cardmarket.nil?
   end
 
   it "lists types for real" do
