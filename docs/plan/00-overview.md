@@ -127,7 +127,7 @@ where the project stands.
 | 5 | Endpoints & client wiring | `05-endpoints-wiring.md` | ☑ done (2026-07-14) | `d983dd1` |
 | 6 | Integration tests (VCR) | `06-integration-tests.md` | ☑ done (2026-07-15) | `0137264` |
 | 7 | Docs & polish | `07-docs-polish.md` | ☑ done (2026-07-15) | `9938684` |
-| 8 | Typed pricing & variants | `08-typed-pricing.md` | ☑ done (2026-07-15) | |
+| 8 | Typed pricing & variants | `08-typed-pricing.md` | ☑ done (2026-07-15) | `608c4f5` |
 
 Status values: `☐ not started` → `◐ in progress` → `☑ done (YYYY-MM-DD)`.
 
