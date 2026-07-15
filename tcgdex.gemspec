@@ -13,7 +13,8 @@ Gem::Specification.new do |spec|
   spec.license     = "MIT"
   spec.required_ruby_version = ">= 3.2"
 
-  spec.files = Dir["lib/**/*.rb", "LICENSE*", "README.md", "CHANGELOG.md"]
+  # chdir so `gem build` from any directory globs the gem's own files, not cwd's.
+  spec.files = Dir.chdir(__dir__) { Dir["lib/**/*.rb", "LICENSE*", "README.md", "CHANGELOG.md"] }
   spec.require_paths = ["lib"]
 
   spec.metadata["homepage_uri"] = spec.homepage

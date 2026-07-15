@@ -215,7 +215,9 @@ tcgdex.cache = nil        # disable caching entirely
 The default cache is a thread-safe, in-memory, per-URL TTL store. It is deliberately
 simple: no size limit and no eviction, so a long-lived process hitting many distinct
 URLs grows it unboundedly — call `tcgdex.cache.clear` periodically, or plug in your own.
-Any object responding to `#get(key)` and `#set(key, value, ttl)` works:
+Any object responding to `#get(key)` and `#set(key, value, ttl)` works. Values are the
+raw JSON response Strings (re-parsed on every hit, so results are always safe to
+mutate), which makes a serializing store like Redis a drop-in fit:
 
 ```ruby
 tcgdex.cache = MyRedisBackedCache.new   # duck-typed; must answer #get / #set
@@ -230,6 +232,9 @@ The SDK never leaks raw `Net::HTTP` exceptions. Outcomes map like this:
 | Missing / untranslated resource (404), or other non-2xx, non-5xx | `nil` |
 | Server error (5xx) | raises `TCGdex::ServerError` (`#status`, `#body`) |
 | DNS / timeout / connection / TLS failure | raises `TCGdex::NetworkError` (`#cause` preserved) |
+
+Redirects (3xx) are followed automatically, up to 5 hops; a longer chain raises
+`TCGdex::NetworkError`.
 
 Both error classes inherit `TCGdex::Error`, so one rescue catches everything the SDK
 raises:

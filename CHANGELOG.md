@@ -29,10 +29,14 @@ JavaScript SDKs.
   `SetBrief#full_set`, `SerieBrief#full_serie`, `Card#full_set`, `Set#card`.
 - Image/asset URL builders: `Card#image_url` (quality + extension), `Set#logo_url`
   / `#symbol_url`, `Serie#logo_url`, plus `#image_data` for binary downloads.
-- HTTP transport over `Net::HTTP` with a `User-Agent` header, timeouts, and error
-  mapping: 404/other non-2xx → `nil`; 5xx → `TCGdex::ServerError`; transport
-  failures → `TCGdex::NetworkError` (both under `TCGdex::Error`).
+- HTTP transport over `Net::HTTP` with a `User-Agent` header, timeouts,
+  redirect following (up to 5 hops), and error mapping: 404/other non-2xx →
+  `nil`; 5xx → `TCGdex::ServerError`; transport failures → `TCGdex::NetworkError`
+  (both under `TCGdex::Error`).
 - Thread-safe in-memory TTL cache (default 3600s), pluggable via the
-  `#get`/`#set` duck type, disableable with `cache = nil`.
+  `#get`/`#set` duck type, disableable with `cache = nil`. Values are stored as
+  raw JSON strings and re-parsed per hit, so every result is a fresh object —
+  mutating one cannot corrupt later reads — and custom caches only ever see
+  serializable Strings.
 
 [0.1.0]: https://github.com/ccmdo/tcgdex-ruby-sdk/releases/tag/v0.1.0

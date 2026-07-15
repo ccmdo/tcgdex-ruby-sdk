@@ -154,6 +154,9 @@ class TCGdex
     end
 
     # @return [String] the encoded query string, with no leading "?"
+    #
+    # Spaces come out as "+" (www-form encoding), not the "%20" used in path ids.
+    # Verified live (2026-07-15): the API decodes both identically in filter values.
     def to_s
       URI.encode_www_form(@params)
     end

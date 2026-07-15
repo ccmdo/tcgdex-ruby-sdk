@@ -19,12 +19,13 @@ class TCGdex
       @path = path
     end
 
-    # Fetches one full item by id.
+    # Fetches one full item by id. Spaces in the id are fine — the transport escapes
+    # them (and only them, so pre-encoded ids like Unown's "exu-%3F" pass through).
     #
     # @param id [String, Integer] the resource id (or an index value, e.g. a rarity name)
     # @return [BaseModel, nil] the full model, or nil when it does not exist
     def get(id)
-      data = @client.fetch(@path, escape(id))
+      data = @client.fetch(@path, id)
       @item_class.new(data, client: @client) unless data.nil?
     end
 
@@ -39,14 +40,6 @@ class TCGdex
       return data if @brief_class.nil?
 
       data.map { |element| @brief_class.new(element, client: @client) }
-    end
-
-    private
-
-    # IDs can already carry percent-encoded characters as data (Unown "?" is "exu-%3F"),
-    # so escape spaces only — re-encoding "%" would corrupt them.
-    def escape(id)
-      id.to_s.gsub(" ", "%20")
     end
   end
 end

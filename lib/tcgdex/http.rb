@@ -21,6 +21,8 @@ class TCGdex
     READ_TIMEOUT = 30
     # @return [String] the `User-Agent` header sent on every request
     USER_AGENT = "tcgdex-ruby-sdk/#{TCGdex::VERSION}".freeze
+    # @return [Integer] redirect hops followed before giving up
+    MAX_REDIRECTS = 5
 
     # Transport-level failures, all reported as {TCGdex::NetworkError}.
     TRANSPORT_ERRORS = [
@@ -50,6 +52,11 @@ class TCGdex
     # A missing resource (404) yields nil and is not cached — it is a normal outcome
     # (bad id, or content not translated into the requested language).
     #
+    # The cache stores the raw JSON body and every call re-parses it, so each caller
+    # gets an object it alone owns — mutating a result can never corrupt what later
+    # calls see. (It also means pluggable caches only ever store Strings, which
+    # serialize anywhere.)
+    #
     # @param url [String] the full request URL
     # @return [Hash, Array, String, Numeric, nil] the parsed body, or nil when the
     #   resource does not exist (404) or is otherwise a non-2xx, non-5xx response
@@ -58,24 +65,30 @@ class TCGdex
     # @raise [TCGdex::Error] when a 2xx body is not valid JSON
     def get(url)
       cached = cache&.get(url)
-      return cached unless cached.nil?
+      return parse(cached) unless cached.nil?
 
       body = get_raw(url)
       return nil if body.nil?
 
-      parse(body).tap { |value| cache&.set(url, value, cache_ttl) }
+      value = parse(body)
+      cache&.set(url, body, cache_ttl)
+      value
     end
 
     # GETs a URL and returns the response body unparsed — for binaries (card images).
     #
     # Never cached: image bodies are large and the cache is unbounded.
     #
+    # Redirects are followed (at most {MAX_REDIRECTS} hops) — assets can move without
+    # images silently "disappearing".
+    #
     # @param url [String] the full request URL
     # @return [String, nil] the raw body, or nil when the resource does not exist
     # @raise [TCGdex::ServerError] on a 5xx response
-    # @raise [TCGdex::NetworkError] when the request could not be completed
+    # @raise [TCGdex::NetworkError] when the request could not be completed,
+    #   including a redirect chain longer than {MAX_REDIRECTS}
     def get_raw(url)
-      response = perform(parse_uri(url))
+      response = perform_following_redirects(parse_uri(url))
 
       case response
       when Net::HTTPSuccess
@@ -95,6 +108,30 @@ class TCGdex
       URI.parse(url.to_s.gsub(" ", "%20"))
     rescue URI::InvalidURIError => e
       raise Error, "TCGdex API request URL is invalid: #{e.message}"
+    end
+
+    # A 3xx without a Location falls through untouched (e.g. 304), landing on the
+    # same nil as other non-2xx, non-5xx responses.
+    def perform_following_redirects(uri)
+      response = perform(uri)
+      hops = 0
+
+      while response.is_a?(Net::HTTPRedirection) && (location = response["Location"])
+        hops += 1
+        raise NetworkError, "TCGdex API redirected more than #{MAX_REDIRECTS} times" if hops > MAX_REDIRECTS
+
+        uri = redirect_target(uri, location)
+        response = perform(uri)
+      end
+
+      response
+    end
+
+    # Location may be relative (RFC 7231 §7.1.2); resolve it against the current URI.
+    def redirect_target(uri, location)
+      uri + location
+    rescue URI::InvalidURIError, URI::BadURIError => e
+      raise Error, "TCGdex API redirect location is invalid: #{e.message}"
     end
 
     def perform(uri)

@@ -126,6 +126,52 @@ RSpec.describe TCGdex::Http do
     end
   end
 
+  describe "redirects" do
+    let(:url) { "https://assets.tcgdex.net/en/swsh/swsh3/136/high.png" }
+    let(:moved) { "https://cdn.tcgdex.net/en/swsh/swsh3/136/high.png" }
+
+    it "follows a redirect to the asset's new home" do
+      stub_request(:get, url).to_return(status: 302, headers: { "Location" => moved })
+      stub_request(:get, moved).to_return(status: 200, body: "\x89PNG binary")
+
+      expect(http.get_raw(url)).to eq("\x89PNG binary")
+    end
+
+    it "resolves a relative Location against the request URL" do
+      stub_request(:get, url).to_return(status: 301, headers: { "Location" => "/en/swsh/swsh3/136/low.png" })
+      stub_request(:get, "https://assets.tcgdex.net/en/swsh/swsh3/136/low.png")
+        .to_return(status: 200, body: "\x89PNG binary")
+
+      expect(http.get_raw(url)).to eq("\x89PNG binary")
+    end
+
+    it "follows redirects for JSON responses too" do
+      json_url = "https://api.tcgdex.net/v2/en/cards/swsh3-136"
+      stub_request(:get, json_url).to_return(status: 308, headers: { "Location" => "#{json_url}/" })
+      stub_request(:get, "#{json_url}/").to_return(status: 200, body: '{"id":"swsh3-136"}')
+
+      expect(http.get(json_url)).to eq({ "id" => "swsh3-136" })
+    end
+
+    it "raises NetworkError rather than looping on endless redirects" do
+      stub_request(:get, url).to_return(status: 302, headers: { "Location" => url })
+
+      expect { http.get_raw(url) }.to raise_error(TCGdex::NetworkError, /redirected more than/)
+    end
+
+    it "returns nil for a redirect without a Location" do
+      stub_request(:get, url).to_return(status: 302)
+
+      expect(http.get_raw(url)).to be_nil
+    end
+
+    it "raises Error rather than leaking an unparsable Location" do
+      stub_request(:get, url).to_return(status: 302, headers: { "Location" => "http://bad host/" })
+
+      expect { http.get_raw(url) }.to raise_error(TCGdex::Error, /redirect location is invalid/)
+    end
+  end
+
   describe "caching" do
     subject(:http) { described_class.new(cache: TCGdex::Cache.new, cache_ttl: 3600) }
 
@@ -141,6 +187,18 @@ RSpec.describe TCGdex::Http do
       http.get(url)
 
       expect(http.get(url)).to eq({ "id" => "swsh3-136" })
+    end
+
+    it "is immune to callers mutating an earlier result" do
+      http.get(url)["id"] = "corrupted"
+
+      expect(http.get(url)).to eq({ "id" => "swsh3-136" })
+    end
+
+    it "stores the raw JSON body, so pluggable caches can serialize it" do
+      http.get(url)
+
+      expect(http.cache.get(url)).to eq('{"id":"swsh3-136"}')
     end
 
     it "refetches once the TTL has elapsed" do
